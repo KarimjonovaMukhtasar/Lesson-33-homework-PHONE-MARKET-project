@@ -1,0 +1,13 @@
+import {Router} from "express"
+import {getAll, getOne, updateOne, createOne, deleteOne} from "../controllers/phoneController.js"
+import { validatePhoneNumber, validatePhonePrice } from "../middleware/validator.js"
+
+const phoneRoutes = Router()
+
+phoneRoutes.get("/", getAll)
+phoneRoutes.get("/:id", getOne)
+phoneRoutes.post("/", validatePhoneNumber, validatePhonePrice, createOne)
+phoneRoutes.put("/:id", validatePhoneNumber, validatePhonePrice, updateOne)
+phoneRoutes.delete("/:id", deleteOne)
+
+export default phoneRoutes
