@@ -152,7 +152,6 @@ async function deleteOne(req, res) {
         })
     }
 }
-
 // phoneRoutes.get("/model/:model_id", getModelPhones)
 // GET	/api/phones/model/:model_id	Modelga tegishli telefonlarni ko'rish
 async function getModelPhones(req,res){

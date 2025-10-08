@@ -1,5 +1,5 @@
 import {Router} from "express"
-import {getAll, getOne, updateOne, createOne, deleteOne} from "../controllers/modelController.js"
+import {getAll, getOne, updateOne, createOne, deleteOne, getAllBrandModels} from "../controllers/modelController.js"
 
 const modelRoutes = Router()
 

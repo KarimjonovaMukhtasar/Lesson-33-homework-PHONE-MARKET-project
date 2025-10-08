@@ -131,7 +131,7 @@ async function getAllBrandModels(req, res) {
             if(brandId.rows.length === 0){
                 return res.status(404).json({success:false, message: `NOT FOUND SUCH AN ID OF A BRAND!`})
             }
-            const {rows} = await pool.query(`SELECT m.*, b.name as brand_name from model m JOIN brand on m.brand_id = b.id where m.brand_id = $1`, [brand_id])
+            const {rows} = await pool.query(`SELECT m.*, b.name as brand_name from model m JOIN brand b on m.brand_id = b.id where m.brand_id = $1`, [brand_id])
             if(rows.length === 0){
                 return res.status(404).json({success: false, message: `NO ANY MODEL ON THIS BRAND, SORRY!`, data: rows})
             }
@@ -146,4 +146,4 @@ async function getAllBrandModels(req, res) {
     }
 }
 
-export { getAll, getOne, deleteOne, updateOne, createOne }
+export { getAll, getOne, deleteOne, updateOne, createOne, getAllBrandModels }

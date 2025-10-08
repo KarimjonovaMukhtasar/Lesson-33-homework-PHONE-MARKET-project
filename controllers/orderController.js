@@ -78,7 +78,7 @@ async function createOne(req, res) {
         }
         const order_detail = await client.query(`SELECT * from order_detail where order_id = $1`, [order.id])     
         await client.query(`COMMIT`)
-        return res.status(201).json({ success: true, message: `Order Created successfully!`, order: order.rows, order_detail: order_detail.rows})
+        return res.status(201).json({ success: true, message: `Order Created successfully!`, order, order_detail: order_detail.rows})
     } catch (e) {
         console.log(e.message)
         await client.query('ROLLBACK')
@@ -168,12 +168,12 @@ async function getCustomerOrders(req, res) {
 async function updateStatus(req, res) {
     try {
         const {id} = req.params
-        const {status} = req.body
+        const {order_status} = req.body
         const orderId = await pool.query(`SELECT * from "order" where id = $1`, [id])
         if(orderId.rows.length === 0){
             return res.status(404).json({success:false, message: `NOT FOUND SUCH AN ORDER ID!`, id})
         }
-        const {rows} = await pool.query(`UPDATE "order" SET status = $1 where id = $2 returning *`, [status, id])
+        const {rows} = await pool.query(`UPDATE "order" SET order_status = $1 where id = $2 returning *`, [order_status, id])
         return res.status(200).json({success: true, message: `ORDER STATUS UPDATED SUCCESSFULLY`, data: rows[0]})
     } catch (e) {
         console.log(e.message)
