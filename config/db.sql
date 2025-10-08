@@ -36,6 +36,7 @@ create table "order" (id bigserial primary key,
 );
 
 create table order_detail(id bigserial primary key,
-        order_id bigint REFERENCES "order"(id),
+        order_id bigint REFERENCES "order"(id) on delete cascade,
         phone_id bigint REFERENCES phone(id),
         quantity smallint not null)
+

@@ -1,4 +1,4 @@
-import { pool } from "../config/db.js"
+import pool  from "../config/db.js"
 
 async function getAll(req, res) {
     try {
@@ -72,10 +72,9 @@ async function updateOne(req, res) {
                 success: false,
                 message: `NOT FOUND SUCH AN ID`
             })
-        }
-        const { content } = req.body
-        const keys = Object.keys(content)
-        const values = Object.values(content)
+        } 
+        const keys = Object.keys(req.body)
+        const values = Object.values(req.body)
         const query = keys.map((key, i) => key += ` =$${i + 1}`)
         let { rows } = await pool.query(`UPDATE brand SET ${query.join(" , ")} where id= $${keys.length + 1} returning *`, [...values, id])
         return res.status(200).json({ success: true, message: `UPDATED SUCCESSFULLY!`, data: rows[0] })

@@ -1,7 +1,7 @@
 import {body, validationResult } from "express-validator"
 
 export const validateBrandName = [
-    body("brand").notEmpty().withMessage(`BRAND NAME IS REQUIRED,PLEASE FILL IT!`),
+    body("name").notEmpty().withMessage(`BRAND NAME IS REQUIRED,PLEASE FILL IT!`),
     (req,res,next)=>{
         const errors = validationResult(req)
         if(!errors.isEmpty()){
@@ -23,7 +23,7 @@ export const validatePhonePrice = [
 ]
 
 export const validatePhoneNumber = [
-    body("phone_number").startsWith('+').isLength({min:12}).withMessage(`PHONE NUMBER MUST HAVE AT LEAST 12 DIGITS STARTING WITH PLUS`),
+    body("phone_number").matches(/^\+998\d{9}$/).withMessage(`PHONE NUMBER MUST HAVE AT LEAST ONLY 12 DIGITS STARTING WITH PLUS`),
     (req,res,next)=>{
         const errors = validationResult(req)
         if(!errors.isEmpty()){
