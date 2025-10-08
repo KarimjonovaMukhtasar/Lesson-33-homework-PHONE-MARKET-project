@@ -8,5 +8,6 @@ modelRoutes.get("/:id", getOne)
 modelRoutes.post("/", createOne )
 modelRoutes.put("/:id", updateOne)
 modelRoutes.delete("/:id", deleteOne)
-
+modelRoutes.get("/brand/:brand_id", getAllBrandModels)
+// GET	/api/models/brand/:brand_id	Brendga tegishli modellarni ko'rish
 export default  modelRoutes

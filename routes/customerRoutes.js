@@ -7,7 +7,7 @@ const customerRoutes = Router()
 customerRoutes.get("/", getAll)
 customerRoutes.get("/:id", getOne)
 customerRoutes.post("/", validateBrandName, validatePhoneNumber, createOne )
-customerRoutes.put("/:id", validateBrandName, validatePhoneNumber, updateOne)
+customerRoutes.put("/:id", updateOne)
 customerRoutes.delete("/:id", deleteOne)
 
 export default customerRoutes
